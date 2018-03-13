@@ -76,7 +76,7 @@
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">green_r_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">vga_sync</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">15 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;green_r_1&gt; &lt;green_r_2&gt; &lt;green_r_3&gt; &lt;green_r_4&gt; &lt;green_r_5&gt; &lt;green_r_6&gt; &lt;green_r_7&gt; &lt;blue_r_0&gt; &lt;blue_r_1&gt; &lt;blue_r_2&gt; &lt;blue_r_3&gt; &lt;blue_r_4&gt; &lt;blue_r_5&gt; &lt;blue_r_6&gt; &lt;blue_r_7&gt; </arg>
 </msg>
 
-<msg type="warning" file="Xst" num="1710" delta="new" >FF/Latch &lt;<arg fmt="%s" index="1">char_address_13</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">top</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">char_address_13</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">top</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">vga_top_i/vga_i/vga_sync_i/h_count_r_10</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">top</arg>&gt;. This FF/Latch will be trimmed during the optimization process.

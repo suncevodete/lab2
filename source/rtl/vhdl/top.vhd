@@ -287,7 +287,7 @@ begin
 		end if;
 	end process;
 	
-	char_value <= "001001" when char_address = 1 else --J
+	char_value <= "001010" when char_address = 1 else --J
 					  "000101" when char_address = 2 else --E
 					  "001100" when char_address = 3 else --L
 					  "000101" when char_address = 4 else --E
@@ -298,7 +298,7 @@ begin
 					  "001111" when char_address = 9 else --O
 					  "010010" when char_address = 10 else --R
 					  "001111" when char_address = 11 else --O
-					  "001001" when char_address = 12 else --J
+					  "001010" when char_address = 12 else --J
 					  "000001" when char_address = 13 else --A
 					  "100000"; --space
 								
