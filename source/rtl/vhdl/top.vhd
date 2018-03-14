@@ -160,7 +160,7 @@ architecture rtl of top is
   
   --added signals
   signal char_address_next : std_logic_vector(MEM_ADDR_WIDTH-1 downto 0); --signal for register
-  signal cnt : std_logic_vector(13 downto 0);
+  signal cnt : std_logic_vector(16 downto 0); --1 sec enable for txt mem
 begin
 
   -- calculate message lenght from font size
@@ -173,7 +173,7 @@ begin
   
   -- removed to inputs pin
   direct_mode <= '0';
-  display_mode     <= "01";  -- 01 - text mode, 10 - graphics mode, 11 - text & graphics
+  display_mode     <= "11";  -- 01 - text mode, 10 - graphics mode, 11 - text & graphics
   
   font_size        <= x"1";
   show_frame       <= '0';
@@ -272,12 +272,13 @@ begin
   --char_value
   --char_we
   
-	char_we <= '1';
-	--registar
+  char_we <= '1';
+	--register
 	process(pix_clock_s, reset_n_i)
 	begin
 		if reset_n_i = '0' then
-			char_address <= (others=>'0');
+			char_address <= (others => '0');
+			cnt <= (others => '0');
 		elsif rising_edge(pix_clock_s) then
 			if char_address < 4800 then
 				char_address <= char_address + 1;
@@ -301,12 +302,54 @@ begin
 					  "001010" when char_address = 12 else --J
 					  "000001" when char_address = 13 else --A
 					  "100000"; --space
-								
+	
+	
   
   -- koristeci signale realizovati logiku koja pise po GRAPH_MEM
   --pixel_address
   --pixel_value
   --pixel_we
+  
+  pixel_we <= '1';
+  
+  process(pix_clock_s, reset_n_i)
+	begin
+		if reset_n_i = '0' then
+			pixel_address <= (others => '0');
+		elsif rising_edge(pix_clock_s) then
+			if pixel_address < 9600 then
+				pixel_address <= pixel_address + 1;
+			else
+				pixel_address <= (others => '0');
+			end if;
+		end if;
+	end process;
+  
+
+	pixel_value <= (others=>'1') when pixel_address >= 230*20+9 and pixel_address <= 230*20+11 else
+						(others=>'1') when pixel_address >= 231*20+9 and pixel_address <= 231*20+11 else
+						(others=>'1') when pixel_address >= 232*20+9 and pixel_address <= 232*20+11 else
+						(others=>'1') when pixel_address >= 233*20+9 and pixel_address <= 233*20+11 else
+						(others=>'1') when pixel_address >= 234*20+9 and pixel_address <= 234*20+11 else
+						(others=>'1') when pixel_address >= 235*20+9 and pixel_address <= 235*20+11 else
+						(others=>'1') when pixel_address >= 236*20+9 and pixel_address <= 236*20+11 else
+						(others=>'1') when pixel_address >= 237*20+9 and pixel_address <= 237*20+11 else
+						(others=>'1') when pixel_address >= 238*20+9 and pixel_address <= 238*20+11 else
+						(others=>'1') when pixel_address >= 239*20+9 and pixel_address <= 239*20+11 else
+						(others=>'1') when pixel_address >= 240*20+9 and pixel_address <= 240*20+11 else
+						(others=>'1') when pixel_address >= 241*19+9 and pixel_address <= 241*20+11 else
+						(others=>'1') when pixel_address >= 242*19+9 and pixel_address <= 242*20+11 else
+						(others=>'1') when pixel_address >= 243*19+9 and pixel_address <= 243*20+11 else
+						(others=>'1') when pixel_address >= 244*19+9 and pixel_address <= 244*20+11 else
+						(others=>'1') when pixel_address >= 245*19+9 and pixel_address <= 245*20+11 else
+						(others=>'1') when pixel_address >= 246*19+9 and pixel_address <= 246*20+11 else
+						(others=>'1') when pixel_address >= 247*19+9 and pixel_address <= 247*20+11 else
+						(others=>'1') when pixel_address >= 248*19+9 and pixel_address <= 248*20+11 else
+						(others=>'1') when pixel_address >= 249*19+9 and pixel_address <= 249*20+11 else
+						(others=>'1') when pixel_address >= 250*19+9 and pixel_address <= 250*20+11 else
+						(others=>'0');
+  
+  
   
   
 end rtl;
